@@ -9,8 +9,12 @@ import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.CrossOrigin;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.ModelAndView;
 
@@ -19,14 +23,14 @@ import com.example.mytask.model.TransactionVO;
 import com.example.mytask.service.CSVProcessor;
 
 @RestController
-@CrossOrigin
 public class WelcomeController {
 
 	@Autowired
 	CSVProcessor readService;
-	
-	@RequestMapping(value = "/welcome")
-	@Scheduled(fixedRate = 10000)
+	@Scheduled(fixedRate = 500)
+	@CrossOrigin
+	@RequestMapping(value = "/welcome", method = RequestMethod.GET, produces = "application/json")
+	 @ResponseBody
 	public List<TransactionVO> readFile() {
 		// Read Data from csv file
 		List<CSVFileModel> csvmodel = readService.tocsvFileModel();
@@ -44,4 +48,5 @@ public class WelcomeController {
 		}
 
 	}
+
 }

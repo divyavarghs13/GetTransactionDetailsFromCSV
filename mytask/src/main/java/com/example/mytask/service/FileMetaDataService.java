@@ -81,10 +81,12 @@ public class FileMetaDataService {
     public void moveFileToProcessed(String fileName)
     {	
     	try{
-    		String directory = "C:\\processing\\";
+    		String directory = "D:\\processing\\";
     	   File currentfile =new File(directory+fileName);
-    	  // System.out.println("Current"+currentfile);
-    	   if(currentfile.renameTo(new File(directory +"history\\"+ currentfile.getName()))){
+    	   System.out.println("Current"+currentfile);
+    	   File newFilename=new File(directory +"history\\"+ currentfile.getName());
+    	   System.out.println("newFile"+newFilename);
+    	   if(currentfile.renameTo(newFilename)){
     		System.out.println("File is moved successful!");
     	   }else{
     		System.out.println("File is failed to move!");

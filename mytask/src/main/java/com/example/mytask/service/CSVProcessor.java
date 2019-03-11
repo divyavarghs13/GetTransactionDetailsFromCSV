@@ -38,7 +38,7 @@ public class CSVProcessor {
 	FileMetaDataService fmdso;
 
 	int count = 0;
-	String directory = "C:/processing/";
+	String directory = "D:/processing/";
 
 	public boolean executeCSVProcessor() {
 
