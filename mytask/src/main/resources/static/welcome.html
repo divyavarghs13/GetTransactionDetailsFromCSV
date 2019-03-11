@@ -1,0 +1,58 @@
+<html>
+<table id="transDataTable" border="1">
+    <tr>
+        <th>Id</th>
+        <th>Date</th>
+        <th>Amount</th>
+        <th>Description</th>
+        <th>Start Date</th>
+        <th>End Date</th>
+        <th>File Name</th>
+    </tr>
+
+</table>
+
+<style>
+table {
+  border: 2px solid #666;
+    width: 100%;
+}
+th {
+  background: #f8f8f8;
+  font-weight: bold;
+    padding: 2px;
+}
+</style>
+     <script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
+
+<script>
+$.ajax({
+    url: 'http://localhost:8080/welcome',
+    type: "get",
+    dataType: "json",
+
+    success: function(data) {
+        drawTable(data);
+    }
+});
+
+function drawTable(data) {
+    for (var i = 0; i < data.length; i++) {
+        drawRow(data[i]);
+    }
+}
+
+function drawRow(rowData) {
+    var row = $("<tr />")
+    $("#transDataTable").append(row);
+        row.append($("<td>" + rowData.transactionID + "</td>"));
+        row.append($("<td>" + rowData.transactionDate + "</td>"));
+        row.append($("<td>" + rowData.amount + "</td>"));
+        row.append($("<td>" + rowData.description + "</td>"));
+		row.append($("<td>" + rowData.startDate + "</td>"));
+		row.append($("<td>" + rowData.endDate + "</td>"));
+		row.append($("<td>" + rowData.fileName + "</td>"));
+    }
+
+</script>
+</html>
