@@ -18,7 +18,8 @@ import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
-
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 @Component
 public class FileMetaDataService {
 
@@ -67,17 +68,20 @@ public class FileMetaDataService {
 		    }
 		  
 		  }
-		  if(csvFiles.isEmpty()) {			  
+		  System.out.println("FileSize="+csvFiles.size());
+		  if(csvFiles.size()==0) {			  
 			  csvFiles=null;
 			  System.out.println("No more files to Process");
+			  //logger.info("No more files to Process");
 		  }
 		  else {
+			 
 			  csvName=csvFiles.get(0).toString();
 		  }
 		  return csvName;
 		}
 	
-	/** Move the file from current folder to Processed folder **/
+	/** Move the file from current folder to history folder **/
     public void moveFileToProcessed(String fileName)
     {	
     	try{
@@ -87,7 +91,7 @@ public class FileMetaDataService {
     	   File newFilename=new File(directory +"history\\"+ currentfile.getName());
     	   System.out.println("newFile"+newFilename);
     	   if(currentfile.renameTo(newFilename)){
-    		System.out.println("File is moved successful!");
+    		System.out.println("File is moved successfully!");
     	   }else{
     		System.out.println("File is failed to move!");
     	   }
