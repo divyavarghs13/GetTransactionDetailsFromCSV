@@ -27,7 +27,7 @@ public class WelcomeController {
 
 	@Autowired
 	CSVProcessor readService;
-	@Scheduled(fixedRate = 500)
+	@Scheduled(fixedRate = 10000)
 	@CrossOrigin
 	@RequestMapping(value = "/welcome", method = RequestMethod.GET, produces = "application/json")
 	 @ResponseBody

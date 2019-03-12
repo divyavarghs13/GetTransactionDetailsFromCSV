@@ -13,7 +13,7 @@ import com.example.mytask.model.TransactionVO;
 @Controller
 public class DisplayController {
 	@RequestMapping(value = "/display")
-	@Scheduled(fixedRate = 500)
+	@Scheduled(fixedRate = 10000)
 	public String display() {
 		return "welcome.html";
 	}
