@@ -22,7 +22,7 @@ public class WelcomeController {
 
 	@CrossOrigin
 	@RequestMapping(value = "/read")
-	@Scheduled(fixedRate = 500)
+	@Scheduled(fixedRate = 5000)
 	public String readFile() {
 		// Read Data from csv file
 		List<CSVFileModel> csvmodel = readService.tocsvFileModel();
