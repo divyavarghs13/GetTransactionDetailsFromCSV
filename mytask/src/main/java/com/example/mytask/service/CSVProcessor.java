@@ -78,7 +78,7 @@ public class CSVProcessor {
 					+ list.getEndDate() + "    " + list.getFileName()).toString();
 			//getrecord.add(record);
 
-			System.out.println(record);
+			//System.out.println(record);
 			
 		}
 		return transactionlist;

@@ -23,6 +23,7 @@ import org.slf4j.LoggerFactory;
 @Component
 public class FileMetaDataService {
 
+	private final Logger logger = LoggerFactory.getLogger(this.getClass());
 	/** To get the current Time **/
 	public Timestamp getCurrentTime()
     {      
@@ -71,8 +72,7 @@ public class FileMetaDataService {
 		  System.out.println("FileSize="+csvFiles.size());
 		  if(csvFiles.size()==0) {			  
 			  csvFiles=null;
-			  System.out.println("No more files to Process");
-			  //logger.info("No more files to Process");
+			  logger.info("No more files to Process");
 		  }
 		  else {
 			 

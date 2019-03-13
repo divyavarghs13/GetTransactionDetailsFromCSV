@@ -12,7 +12,7 @@ import com.example.mytask.model.TransactionVO;
 
 @Controller
 public class DisplayController {
-	
+
 	@RequestMapping(value = "/display")	
 	public String display() {
 		return "welcome.html";

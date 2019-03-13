@@ -20,30 +20,33 @@ public class WelcomeController {
 	@Autowired
 	CSVProcessor readService;
 
-	
 	@CrossOrigin
-	@RequestMapping(value = "/welcome", method = RequestMethod.GET, produces = "application/json")
-	 @ResponseBody
-	public List<TransactionVO> readFile() {
+	@RequestMapping(value = "/read")
+	@Scheduled(fixedRate = 500)
+	public String readFile() {
 		// Read Data from csv file
 		List<CSVFileModel> csvmodel = readService.tocsvFileModel();
 
 		if (csvmodel != null && !csvmodel.isEmpty()) {
 			// Insert values to db
 			readService.executeCSVProcessor();
-
-			// Display fields from db
-			List<TransactionVO> list=readService.displayCSVProcessor();
 			
 			// Move the folder to Processed
-			readService.moveFileFolder();
-			
-			return list;
+			readService.moveFileFolder();			
+			return "File is inserted to database";
 			
 		} else {
-			return null;
+			return "No more new files";
 		}
 
+	}
+	@CrossOrigin
+	@RequestMapping(value = "/welcome", method = RequestMethod.GET, produces = "application/json")
+	 @ResponseBody
+	public List<TransactionVO> displayFile() {
+			// Display fields from db
+			List<TransactionVO> list=readService.displayCSVProcessor();						
+			return list;		
 	}
 
 
